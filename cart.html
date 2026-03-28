@@ -92,18 +92,18 @@ function displayCart() {
           <div class="flex items-center justify-between flex-wrap gap-4 mt-6">
 
             <div class="flex items-center gap-3">
-              <h4 class="text-sm font-medium">Qty:</h4>
+              <h4 class="text-sm text-slate-700 font-medium">Qty:</h4>
 
               <div class="flex gap-2 items-center border px-3 py-1.5">
-                <button onclick="decrease(${item.id})">-</button>
-                <span class="px-2">${item.quantity}</span>
-                <button onclick="increase(${item.id})">+</button>
+                <button class="text-slate-700"  onclick="decrease(${item.id})">-</button>
+                <span class="px-2 text-slate-700">${item.quantity}</span>
+                <button class="text-slate-700" onclick="increase(${item.id})">+</button>
               </div>
             </div>
 
             <div>
-              <h4 class="text-lg font-bold text-blue-600">
-                $${item.price * item.quantity}
+              <h4 class="text-lg font-bold text-slate-600">
+                $${(item.price * item.quantity).toFixed(2)}
               </h4>
             </div>
 
@@ -155,9 +155,9 @@ function updateSummary() {
   let tax = Math.round(subtotal * 0.05);
   let total = subtotal + tax;
 
-  document.getElementById("subtotal").innerText = "$" + subtotal;
+  document.getElementById("subtotal").innerText = "$" + subtotal.toFixed(2);
   document.getElementById("tax").innerText = "$" + tax;
-  document.getElementById("total").innerText = "$" + total;
+  document.getElementById("total").innerText = "$" + total.toFixed(2);
 }
 
 function checkout() {
