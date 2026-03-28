@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<title>Register</title>
+</head>
+<body class="flex items-center justify-center h-screen bg-gradient-to-r from-gray-900 via-gray-700 to-slate-500 text-white">
+
+<form class="max-w-md w-full p-6 shadow-[0_35px_35px_rgba(0,0,0,0.5)] rounded-md" onsubmit="register(event)">
+
+<h1 class="text-2xl font-bold mb-6">Register</h1>
+
+<input id="email" type="email" placeholder="Email" required
+class="w-full p-3 mb-4 border rounded-md outline-none" />
+
+<input id="password" type="password" placeholder="Password" required
+class="w-full p-3 mb-4 border rounded-md outline-none" />
+
+<button type="submit" class="w-full py-3 bg-slate-500 hover:bg-slate-600 cursor-pointer text-white rounded-md">Register</button>
+
+<p id="error" class="text-red-500 text-sm mt-3"></p>
+
+<p class="mt-3 text-sm">Already have an account? 
+<a href="login.html" class="text-blue-600">Sign In</a></p>
+
+</form>
+
+<script>
+function register(e) {
+    e.preventDefault();
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let error = document.getElementById("error");
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.find(u => u.email === email)) {
+        error.innerText = "Email already registered";
+        return;
+    }
+
+    users.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("currentUser", JSON.stringify({ email, password }));
+
+    window.location.href = "product.html";
+}
+</script>
+
+</body>
+</html>
